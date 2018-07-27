@@ -12,8 +12,8 @@ export class TestComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.loader.start('testLoader'); // Previously this failed
-    setTimeout(() => this.loader.stop('testLoader'), 5000);
+    this.fakeLoadApi();
+    // setTimeout(() => this.loader.stop('testLoader'), 5000);
   }
 
   ngAfterViewInit() {
@@ -24,5 +24,11 @@ export class TestComponent implements OnInit, AfterViewInit {
     this.loader.getLoader('testLoader').onStop.subscribe(res => {
       console.log('stop');
     });
+  }
+
+  fakeLoadApi() {
+    setTimeout(() => {
+      this.loader.stop('testLoader');
+    }, 2000);
   }
 }
